@@ -8,7 +8,9 @@ Dependencies: `eslint`, `eslint-config-airbnb`, `eslint-config-prettier`, `eslin
 
 ## Testing
 
-Mocha + Chai + Sinon + Nyc
+Mocha as a test runner, Chai as expectation library, Sinon for test doubles and Nyc for coverage.
+
+Dependencies: `mocha`, `chai`, `sinon`, `nyc`
 
 ## Resources
 
