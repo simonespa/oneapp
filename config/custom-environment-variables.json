@@ -1,0 +1,6 @@
+{
+  "logger": {
+    "level": "LOGGER_LEVEL"
+  },
+  "clustering": "CLUSTERING"
+}

@@ -1,6 +1,6 @@
 files:
   include:
-    - 'src/scss/**/*.s+(a|c)ss'
+    - 'src/style/**/*.s+(a|c)ss'
 rules:
   class-name-format: 2
   no-color-keywords: 2
