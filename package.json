@@ -7,7 +7,10 @@
     "format": "prettier --write '**/*.{js,jsx,scss,json,yml.scss}' .prettierrc",
     "lint:code": "eslint --ext .js,.jsx src test",
     "lint:style": "sass-lint --verbose --no-exit",
-    "lint": "npm run lint:code && npm run lint:style"
+    "lint": "npm run lint:code && npm run lint:style",
+    "pretest": "npm run lint",
+    "test": "npm run test:only",
+    "test:only": "nyc mocha --opts ./mocha.opts"
   },
   "repository": {
     "type": "git",
@@ -25,6 +28,7 @@
   },
   "homepage": "https://github.com/simonespa/oneapp#readme",
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.2.0",
@@ -34,9 +38,12 @@
     "eslint-plugin-react": "^7.13.0",
     "husky": "^2.3.0",
     "lint-staged": "^8.1.7",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
     "prettier": "^1.17.1",
     "pretty-quick": "^1.10.0",
-    "sass-lint": "^1.13.1"
+    "sass-lint": "^1.13.1",
+    "sinon": "^7.3.2"
   },
   "husky": {
     "hooks": {
