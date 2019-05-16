@@ -4,8 +4,10 @@
   "description": "Single Application",
   "main": "index.js",
   "scripts": {
-    "format": "prettier --write '**/*.{js,jsx,scss,json,yml}' .prettierrc",
-    "lint": "eslint --ext .js,.jsx src test"
+    "format": "prettier --write '**/*.{js,jsx,scss,json,yml.scss}' .prettierrc",
+    "lint:code": "eslint --ext .js,.jsx src test",
+    "lint:style": "sass-lint --verbose --no-exit",
+    "lint": "npm run lint:code && npm run lint:style"
   },
   "repository": {
     "type": "git",
@@ -33,7 +35,8 @@
     "husky": "^2.3.0",
     "lint-staged": "^8.1.7",
     "prettier": "^1.17.1",
-    "pretty-quick": "^1.10.0"
+    "pretty-quick": "^1.10.0",
+    "sass-lint": "^1.13.1"
   },
   "husky": {
     "hooks": {
@@ -43,6 +46,10 @@
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint --fix",
+      "git add"
+    ],
+    "*.scss": [
+      "sass-lint --fix --verbose --no-exit",
       "git add"
     ]
   }
