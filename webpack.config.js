@@ -101,7 +101,8 @@ module.exports = (environmentVariables, options) => {
                   }
                 ],
                 '@babel/preset-react'
-              ]
+              ],
+              plugins: ['@babel/plugin-syntax-dynamic-import']
             }
           }
         },
