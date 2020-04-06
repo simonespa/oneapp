@@ -2,9 +2,7 @@
 
 ## Linting and code format
 
-ESLint with Airbnb configs + Sass-Lint + Prettier. This phase is triggered as a precommit hook using Husky, where the staged files are linted and formatted via `lint-staged` and `pretty-quick` commands.
-
-Dependencies: `eslint`, `eslint-config-airbnb`, `eslint-config-prettier`, `eslint-plugin-import`, `eslint-plugin-jsx-a11y`, `eslint-plugin-prettier`, `eslint-plugin-react`, `sass-lint`, `prettier`, `pretty-quick`, `lint-staged`, `husky`
+ESLint with ESLint configs + Prettier. This phase is triggered as a precommit hook using Husky, where the staged files are linted and formatted via `lint-staged` and `pretty-quick` commands.
 
 ## Testing
 

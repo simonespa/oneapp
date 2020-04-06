@@ -1,4 +1,4 @@
-.nyc_output
 assets
 dist
 node_modules
+.eslintcache
