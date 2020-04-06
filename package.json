@@ -1,93 +1,95 @@
 {
   "name": "oneapp",
-  "version": "0.0.1",
-  "description": "Single Application",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "Progressive and Single-Page app",
   "scripts": {
-    "check-types": "tsc",
-    "format": "prettier --write '**/*.{js,jsx,json,yml,scss}' .babelrc .prettierrc",
-    "lint:code": "eslint --ext .js,.jsx src test",
-    "lint:style": "sass-lint --verbose --no-exit",
-    "lint": "npm run lint:code && npm run lint:style",
-    "pretest": "npm run lint",
-    "test": "npm run test:only",
-    "test:only": "BABEL_ENV=test nyc mocha --opts ./mocha.opts",
-    "watch": "NODE_CONFIG_DIR=./src/config webpack --mode development --config webpack.config.js --watch --display-error-details"
+    "start": "NODE_ENV=production node dist/server.js",
+    "start:development": "NODE_CONFIG_DIR=./src/config NODE_ENV=development node dist/server.js",
+    "build": "run-p --print-label build:*",
+    "build:server": "BABEL_ENV=server NODE_ENV=production webpack --config webpack.server.config --env --mode production",
+    "build:client": "BABEL_ENV=client NODE_ENV=production webpack --config webpack.client.config --env --mode production",
+    "watch": "run-p --print-label watch:*",
+    "watch:server": "BABEL_ENV=server NODE_CONFIG_DIR=./src/config NODE_ENV=development webpack --config webpack.server.config --env --mode development --display-error-details --watch",
+    "watch:client": "BABEL_ENV=client NODE_ENV=development webpack --config webpack.client.config --env --mode development --display-error-details --watch",
+    "inspect:server": "BABEL_ENV=server NODE_ENV=production webpack --config webpack.server.config --env.inspect --mode production",
+    "inspect:client": "BABEL_ENV=client NODE_ENV=production webpack --config webpack.client.config --env.inspect --mode production",
+    "lint": "eslint --ext .js --ext .jsx --cache --fix ./",
+    "format": "prettier --write '**/*.{js,jsx,json,yml,md}' .babelrc"
   },
+  "keywords": [
+    "Single Page App",
+    "SPA",
+    "Progressive Web App",
+    "PWA",
+    "Client-Side Routed App",
+    "React",
+    "React Router"
+  ],
+  "author": {
+    "name": "Simone Spaccarotella",
+    "email": "spa.simone@gmail.com",
+    "url": "https://www.linkedin.com/in/simonespaccarotella/"
+  },
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/simonespa/oneapp.git"
   },
-  "keywords": [],
-  "author": {
-    "name": "Simone Spaccarotella",
-    "email": "spa.simone@gmail.com",
-    "url": "https://www.simonespaccarotella.com"
-  },
-  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/simonespa/oneapp/issues"
   },
-  "homepage": "https://github.com/simonespa/oneapp#readme",
   "dependencies": {
-    "config": "^3.1.0",
-    "core-js": "^3.0.1",
-    "express": "^4.16.4",
-    "express-handlebars": "^3.1.0",
-    "luxon": "^1.13.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "winston": "^3.2.1"
+    "axios": "^0.19.2",
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.3",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.4.4",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/register": "^7.4.4",
-    "babel-loader": "^8.0.6",
-    "chai": "^4.2.0",
-    "clean-webpack-plugin": "^2.0.2",
-    "css-loader": "^2.1.1",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^4.2.0",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.13.0",
-    "husky": "^2.3.0",
-    "lint-staged": "^8.1.7",
-    "mini-css-extract-plugin": "^0.6.0",
-    "mocha": "^6.1.4",
-    "node-sass": "^4.12.0",
-    "nodemon-webpack-plugin": "^4.0.8",
-    "nyc": "^14.1.1",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "prettier": "^1.17.1",
-    "pretty-quick": "^1.10.0",
-    "sass-lint": "^1.13.1",
-    "sass-loader": "^7.1.0",
-    "sinon": "^7.3.2",
-    "terser-webpack-plugin": "^1.2.4",
-    "webpack": "^4.31.0",
-    "webpack-cli": "^3.3.2",
-    "webpack-manifest-plugin": "^2.0.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "core-js": "^3.6.4",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-mocha": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.1.2",
+    "nodemon-webpack-plugin": "^4.3.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.4",
+    "redux-devtools-extension": "^2.13.8",
+    "webpack": "^4.42.1",
+    "webpack-bundle-analyzer": "^3.6.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-manifest-plugin": "^2.2.0",
     "webpack-node-externals": "^1.7.2"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && pretty-quick --staged"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --fix",
-      "git add"
+    "*.{json,yml,md}": [
+      "prettier --write"
     ],
-    "*.scss": [
-      "sass-lint --fix --verbose --no-exit",
-      "git add"
+    ".babelrc": [
+      "prettier --write"
+    ],
+    "*.{js,jsx}": [
+      "eslint --fix"
     ]
   }
 }

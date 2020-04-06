@@ -1,11 +1,4 @@
 {
-  "assets": {
-    "caching": "off",
-    "prefix": "/assets"
-  },
-  "logging": {
-    "level": "info",
-    "dateFormat": "yyyy-LL-dd HH:mm:ss"
-  },
-  "clustering": "on"
+  "clustering": "on",
+  "assetPrefix": "https://static.example.com"
 }

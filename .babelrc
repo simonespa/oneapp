@@ -1,7 +1,38 @@
 {
   "env": {
-    "test": {
-      "presets": ["@babel/preset-env", "@babel/preset-react"]
+    "server": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "debug": true,
+            "modules": false,
+            "useBuiltIns": "usage",
+            "corejs": "3",
+            "targets": {
+              "node": "current"
+            }
+          }
+        ],
+        "@babel/preset-react"
+      ]
+    },
+    "client": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "debug": true,
+            "modules": false,
+            "useBuiltIns": "usage",
+            "corejs": "3",
+            "targets": {
+              "browsers": ["last 2 versions", "iOS >= 9", "not dead"]
+            }
+          }
+        ],
+        "@babel/preset-react"
+      ]
     }
   }
 }
