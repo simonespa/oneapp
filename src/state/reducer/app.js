@@ -2,7 +2,7 @@ import { APP } from '../action-types';
 
 const defaultState = {
   name: '',
-  version: ''
+  version: '',
 };
 
 export default function app(state = defaultState, action) {

@@ -4,24 +4,23 @@ env:
   node: true
   mocha: true
 extends:
-  - eslint:recommended
-  - plugin:mocha/recommended
-  - plugin:react/recommended
-  - plugin:jsx-a11y/recommended
-  - plugin:prettier/recommended
+  - "plugin:react/recommended"
+  - plugin:import/errors
+  - plugin:import/warnings
+  - airbnb
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
 parserOptions:
   ecmaFeatures:
     jsx: true
   ecmaVersion: 2018
   sourceType: module
 plugins:
-  - mocha
   - react
+  - import
   - jsx-a11y
-  - prettier
-settings:
-  react:
-    version: detect
 rules:
-  no-var: 2
-  jsx-a11y/no-onchange: 0
+  react/forbid-prop-types: 0
+  import/prefer-default-export: 1
+  import/no-extraneous-dependencies: 1

@@ -1,8 +1,7 @@
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = (env, options) => {
   const isProdMode = options.mode === 'production';
@@ -11,23 +10,23 @@ module.exports = (env, options) => {
     name: 'Client Bundle',
     target: 'web',
     entry: {
-      oneapp: './src/client.jsx'
+      oneapp: './src/client.jsx',
     },
     output: {
       path: path.join(__dirname, 'assets'),
       filename: isProdMode ? 'js/[name].[contenthash].js' : 'js/[name].js',
       library: 'OneApp',
-      libraryTarget: 'var'
+      libraryTarget: 'var',
     },
     externals: {
-      'react': 'React',
+      react: 'React',
       'react-dom': 'ReactDOM',
       'react-router-dom': 'ReactRouterDOM',
-      'axios': 'axios',
-      'redux': 'Redux',
+      axios: 'axios',
+      redux: 'Redux',
       'react-redux': 'ReactRedux',
       'redux-thunk': 'ReduxThunk',
-      'prop-types': 'PropTypes'
+      'prop-types': 'PropTypes',
     },
     // https://webpack.js.org/configuration/optimization/
     // https://webpack.js.org/plugins/split-chunks-plugin/
@@ -48,15 +47,15 @@ module.exports = (env, options) => {
               // get the name. E.g. node_modules/packageName/not/this/part.js
               // or node_modules/packageName
               const packageName = module.context.match(
-                /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+                /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
               )[1];
 
               // npm package names are URL-safe, but some servers don't like @ symbols
               return `${packageName.replace('@', '')}`;
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      },
     },
     devtool: isProdMode ? 'source-map' : 'inline-source-map',
     module: {
@@ -65,19 +64,19 @@ module.exports = (env, options) => {
           test: /\.jsx?$/,
           include: /src/,
           exclude: /node_modules/,
-          use: 'babel-loader'
-        }
-      ]
+          use: 'babel-loader',
+        },
+      ],
     },
     resolve: {
-      extensions: ['.js', '.jsx', '.json']
+      extensions: ['.js', '.jsx', '.json'],
     },
     plugins: [
       new CleanWebpackPlugin(),
       new ManifestPlugin({
-        fileName: 'assets-manifest.json'
-      })
-    ]
+        fileName: 'assets-manifest.json',
+      }),
+    ],
   };
 
   if (env.inspect) {

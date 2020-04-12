@@ -13,8 +13,8 @@ export default async function home(request, response) {
   const store = configureAppStore({
     app: {
       name: pkg.name,
-      version: pkg.version
-    }
+      version: pkg.version,
+    },
   });
 
   response.locals.reactBody = renderToString(
@@ -22,13 +22,13 @@ export default async function home(request, response) {
       <StaticRouter location={request.url} context={context}>
         <OneApp />
       </StaticRouter>
-    </Provider>
+    </Provider>,
   );
 
   // https://redux.js.org/recipes/server-rendering#security-considerations
   response.locals.preloadedState = JSON.stringify(store.getState()).replace(
     /</g,
-    '\\u003c'
+    '\\u003c',
   );
 
   if (context.url) {

@@ -1,9 +1,8 @@
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 const NodemonPlugin = require('nodemon-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = (env, options) => {
   const isDevMode = options.mode === 'development';
@@ -15,7 +14,7 @@ module.exports = (env, options) => {
     output: {
       filename: 'server.js',
       path: path.resolve(__dirname, 'dist'),
-      libraryTarget: 'commonjs2'
+      libraryTarget: 'commonjs2',
     },
     externals: [nodeExternals()],
     devtool: false,
@@ -25,22 +24,22 @@ module.exports = (env, options) => {
           test: /\.jsx?$/,
           include: /src/,
           exclude: /node_modules/,
-          use: 'babel-loader'
-        }
-      ]
+          use: 'babel-loader',
+        },
+      ],
     },
     resolve: {
-      extensions: ['.js', '.jsx', '.json']
+      extensions: ['.js', '.jsx', '.json'],
     },
-    plugins: [new CleanWebpackPlugin()]
+    plugins: [new CleanWebpackPlugin()],
   };
 
   if (isDevMode) {
     webpackConfig.plugins.push(
       new NodemonPlugin({
         watch: path.resolve(__dirname, 'dist'),
-        script: './dist/server.js'
-      })
+        script: './dist/server.js',
+      }),
     );
   }
 

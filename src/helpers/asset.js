@@ -10,8 +10,9 @@ function readManifest(manifestPath) {
 }
 
 /**
- * This class reads the "assets-manifest.json" file and generates an array containing the relative/full paths of
- * the generated JS assets. This array is then returned via handlebar helper to the view.
+ * This class reads the "assets-manifest.json" file and generates an array containing
+ * the relative/full paths of the generated JS assets.
+ * This array is then returned via handlebar helper to the view.
  *
  * In production, it reads the manifest file ones and caches the result, which is then returned
  * in the template via the "assets" helper.
@@ -23,7 +24,7 @@ export default class Asset {
     if (process.env.NODE_ENV === 'production') {
       const manifest = readManifest(manifestPath);
       Asset.list = Object.values(manifest).map(
-        (asset) => `${config.get('assetPrefix')}/${asset}`
+        (asset) => `${config.get('assetPrefix')}/${asset}`,
       );
     } else {
       Asset.manifestPath = manifestPath;
@@ -33,11 +34,10 @@ export default class Asset {
   static assets() {
     if (process.env.NODE_ENV === 'production') {
       return Asset.list;
-    } else {
-      const manifest = readManifest(Asset.manifestPath);
-      return Object.values(manifest).map(
-        (asset) => `${config.get('assetPrefix')}/${asset}`
-      );
     }
+    const manifest = readManifest(Asset.manifestPath);
+    return Object.values(manifest).map(
+      (asset) => `${config.get('assetPrefix')}/${asset}`,
+    );
   }
 }
