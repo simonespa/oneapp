@@ -3,7 +3,7 @@ import exphbs from 'express-handlebars';
 import Asset from './helpers/asset';
 import ignoreFavicon from './middlewares/ignore-favicon';
 import home from './middlewares/home';
-import error from './middlewares/error';
+import errorHandler from './middlewares/errorHandler';
 
 const app = express();
 
@@ -14,9 +14,9 @@ app.engine(
   exphbs({
     extname: 'hbs',
     helpers: {
-      assets: Asset.assets
-    }
-  })
+      assets: Asset.assets,
+    },
+  }),
 );
 app.set('view engine', 'hbs');
 app.set('views', 'src/views');
@@ -30,7 +30,7 @@ app.use('/assets', express.static('assets'));
 
 app.use(ignoreFavicon);
 app.get('*', home);
-app.use(error);
+app.use(errorHandler);
 
 process.on('uncaughtException', (error) => {
   console.log(error);

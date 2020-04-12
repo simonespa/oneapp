@@ -1,6 +1,6 @@
 export default function errorHandler(error, request, response, next) {
   if (response.headersSent) {
-    return next(error);
+    next(error);
   }
 
   response.set('Cache-Control', 'no-cache, no-store, must-revalidate');

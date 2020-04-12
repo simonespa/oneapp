@@ -18,5 +18,5 @@ hydrate(
       <OneApp />
     </BrowserRouter>
   </Provider>,
-  document.getElementById('react-body')
+  document.getElementById('react-body'),
 );
